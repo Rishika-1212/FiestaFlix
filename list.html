@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Invitation & Guest List</title>
+<meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale-1.0">
+      <title>admin</title>
+      <link rel="stylesheet" type="text/css" href="cssadmin.css">
+      <link rel="icon" type="image/x-icon" href="fiestaflix-high-resolution-logo.png">
+  	
+ 
+</head>   
+<body>
+<div class="sec" >
+   <h1 style="color:#fff"><b>To-Do List</b></h1>
+   <pre>
+ <div id="todoContainer">
+    <h1>Event To-Do List</h1>
+
+    <ul id="eventList">
+      <!-- Events will be added dynamically here -->
+    </ul>
+
+    <button id="addEventBtn" onclick="addEvent()">Add Event</button>
+
+
+    <button id="finalizeBtn" onclick="finalizeList()">Finalize To-Do List</button>
+  </div>
+
+  <script>
+    let eventId = 1;
+
+    function addEvent() {
+      const eventList = document.getElementById('eventList');
+      const newEvent = document.createElement('li');
+      newEvent.innerHTML = `<input type="checkbox" id="event${eventId}" onclick="strikeThrough(this)">
+                           <input type="text" id="text${eventId}" placeholder="Event ${eventId}">
+                           <label for="event${eventId}">Event ${eventId}</label>`;
+      eventList.appendChild(newEvent);
+      eventId++;
+    }
+
+    function strikeThrough(checkbox) {
+      const eventText = checkbox.nextElementSibling.nextElementSibling;
+      if (checkbox.checked) {
+        eventText.style.textDecoration = 'line-through';
+      } else {
+        eventText.style.textDecoration = 'none';
+      }
+    }
+
+    function finalizeList() {
+      const addEventBtn = document.getElementById('addEventBtn');
+      addEventBtn.disabled = true;
+      document.getElementById('finalizeBtn').disabled = true;
+    }
+  </script>
+    <hr>
+
+  <div id="todoContainer">
+    <h1>Backend Event To-Do List</h1>
+
+    <ul id="backendEventList">
+      <!-- Events for Backend To-Do List will be added dynamically here -->
+    </ul>
+
+    <button id="addBackendEventBtn" onclick="addBackendEvent()">Add Event</button>
+
+
+    <button id="finalizeBackendBtn" onclick="finalizeBackendList()">Finalize To-Do List</button>
+  </div>
+
+  <script>
+    let backendEventId = 1;
+
+    function addBackendEvent() {
+      const backendEventList = document.getElementById('backendEventList');
+      const newBackendEvent = document.createElement('li');
+      newBackendEvent.innerHTML = `<input type="checkbox" id="backendEvent${backendEventId}" onclick="strikeThroughBackend(this)">
+                                  <input type="text" id="backendText${backendEventId}" placeholder="Backend Event ${backendEventId}">
+                                  <label for="backendEvent${backendEventId}">Backend Event ${backendEventId}</label>`;
+      backendEventList.appendChild(newBackendEvent);
+      backendEventId++;
+    }
+
+    function strikeThroughBackend(checkbox) {
+      const backendEventText = checkbox.nextElementSibling.nextElementSibling;
+      if (checkbox.checked) {
+        backendEventText.style.textDecoration = 'line-through';
+      } else {
+        backendEventText.style.textDecoration = 'none';
+      }
+    }
+
+    function finalizeBackendList() {
+      const backendEventList = document.getElementById('backendEventList');
+      backendEventList.innerHTML = ''; // Clear the previous backend events
+      const addBackendEventBtn = document.getElementById('addBackendEventBtn');
+      addBackendEventBtn.disabled = false;
+      document.getElementById('finalizeBackendBtn').disabled = false;
+    }
+  </script>
+
+
+
+
+
+
+<a href="admin.html">
+<button type="button">Home</button>
+</a>
+</div>
+</body>
+</html>
+

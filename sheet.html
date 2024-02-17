@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Invitation & Guest List</title>
+<meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale-1.0">
+      <title>admin</title>
+      <link rel="stylesheet" type="text/css" href="cssadmin.css">
+      <link rel="icon" type="image/x-icon" href="fiestaflix-high-resolution-logo.png">
+  	
+ 
+</head>   
+<body>
+<div class="sec" >
+   <h1 style="color:#fff"><b>SpreadSheet</b></h1>
+   <pre>
+<table id="spreadsheet">
+    <thead>
+      <tr>
+        <th></th> <!-- Empty header for adding columns dynamically -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td contenteditable="true"></td> <!-- Initial cell for content -->
+      </tr>
+    </tbody>
+  </table>
+
+  <button id="addRowBtn" onclick="addRow()">Add Row</button>
+
+
+ <button id="addColBtn" onclick="addCol()">Add Column</button>
+
+
+
+ <button id="finalizeBtn" onclick="finalizeSheet()">Finalize Sheet</button>
+
+  <script>
+    function addRow() {
+      const spreadsheetBody = document.querySelector('#spreadsheet tbody');
+      const newRow = document.createElement('tr');
+      const cell = document.createElement('td');
+      cell.setAttribute('contenteditable', 'true');
+      newRow.appendChild(cell);
+      spreadsheetBody.appendChild(newRow);
+    }
+
+    function addCol() {
+      const spreadsheetHeader = document.querySelector('#spreadsheet thead tr');
+      const newColHeader = document.createElement('th');
+      newColHeader.setAttribute('contenteditable', 'true');
+      newColHeader.innerText = 'New Column';
+      spreadsheetHeader.appendChild(newColHeader);
+
+      const spreadsheetBody = document.querySelector('#spreadsheet tbody');
+      const rows = spreadsheetBody.querySelectorAll('tr');
+      rows.forEach(row => {
+        const cell = document.createElement('td');
+        cell.setAttribute('contenteditable', 'true');
+        row.appendChild(cell);
+      });
+    }
+
+    function finalizeSheet() {
+      const elements = document.querySelectorAll('#spreadsheet th, #spreadsheet td, #addRowBtn, #addColBtn, #finalizeBtn');
+      elements.forEach(element => {
+        element.removeAttribute('contenteditable');
+        element.style.cursor = 'default';
+      });
+      document.getElementById('finalizeBtn').disabled = true;
+    }
+  </script>
+</pre><a href="admin.html">
+<button type="button">Home</button>
+</a>
+</div>
+</body>
+</html>

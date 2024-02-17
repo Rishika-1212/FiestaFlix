@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Invitation & Guest List</title>
+<meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale-1.0">
+      <title>admin</title>
+      <link rel="stylesheet" type="text/css" href="cssadmin.css">
+      <link rel="icon" type="image/x-icon" href="fiestaflix-high-resolution-logo.png">
+  	
+ 
+</head>   
+<body>
+<input type="file" id="fileInput" multiple accept="image/*">
+<button id="selectBtn">Select Photos</button>
+<button id="saveBtn">Save Selected Photos</button>
+
+<div id="gallery"></div>
+
+<script>
+    document.getElementById('fileInput').addEventListener('change', handleFileSelect);
+    document.getElementById('selectBtn').addEventListener('click', toggleSelection);
+    document.getElementById('saveBtn').addEventListener('click', saveSelectedPhotos);
+
+    function handleFileSelect(event) {
+        const files = event.target.files;
+
+        for (const file of files) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                const imageUrl = e.target.result;
+                createImageElement(imageUrl);
+            };
+
+            reader.readAsDataURL(file);
+        }
+
+        document.getElementById('selectBtn').style.display = 'block';
+    }
+
+    function createImageElement(imageUrl) {
+        const gallery = document.getElementById('gallery');
+        const imageContainer = document.createElement('div');
+        const image = document.createElement('img');
+
+        image.src = imageUrl;
+
+        imageContainer.className = 'image-container';
+        imageContainer.appendChild(image);
+        gallery.appendChild(imageContainer);
+
+        imageContainer.addEventListener('click', toggleSelection);
+    }
+
+    function toggleSelection() {
+        const images = document.querySelectorAll('.image-container');
+        const selectBtn = document.getElementById('selectBtn');
+        const saveBtn = document.getElementById('saveBtn');
+
+        for (const image of images) {
+            image.classList.toggle('selected');
+        }
+
+        if (selectBtn.style.display === 'none') {
+            selectBtn.style.display = 'block';
+            saveBtn.style.display = 'none';
+        } else {
+            selectBtn.style.display = 'none';
+            saveBtn.style.display = 'block';
+        }
+    }
+
+    function saveSelectedPhotos() {
+        const selectedImages = document.querySelectorAll('.image-container.selected img');
+        
+        // Here, you can implement logic to save the selected images in your folder.
+        // For simplicity, we will just log the selected image URLs to the console.
+        selectedImages.forEach(img => {
+            console.log(img.src);
+        });
+
+        // Clear selection after saving
+        toggleSelection();
+    }
+</script>
+
+<a href="admin.html">
+<button type="button">Home</button>
+</a>
+</div>
+</body>
+</html>

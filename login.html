@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guest Entry</title>
+    <link rel="stylesheet" href="stylesguest.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Guest Entry</h1>
+
+        <!-- Guest Entry Form -->
+        <form id="guestForm">
+            <label for="fullname">Full Name:</label>
+            <input type="text" id="fullname" name="fullname" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <button type="button" onclick="registerGuest()">Register</button>
+        </form>
+    </div>
+
+    <script>
+        function registerGuest() {
+            // Add your guest registration logic here
+
+            // Redirect to guest.html after successful registration
+            window.location.href = "guest.html";
+        }
+    </script>
+
+
+</div>
+</body>
+</html>

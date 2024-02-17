@@ -1,0 +1,152 @@
+
+    
+<!DOCTYPE html>
+<html>
+<head>
+<title>Invitation & Guest List</title>
+<meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale-1.0">
+      <title>admin</title>
+      <link rel="stylesheet" type="text/css" href="cssadmin.css">
+      <link rel="icon" type="image/x-icon" href="fiestaflix-high-resolution-logo.png">
+  	
+ 
+</head>   
+<body>
+<div class="sec" >
+   <h1 style="color:#fff"><b>Invitation</b></h1>
+   <pre>
+<form id="invitationForm">
+    <label for="invitationHeading">Invitation Heading:</label>
+    <input type="text" id="invitationHeading" name="invitationHeading" required>
+
+    <form id="invitationForm">
+    <label for="invitationText">Invitation Text:</label>
+    <textarea id="invitationText" name="invitationText" rows="6" required></textarea>
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="contact">Contact:</label>
+    <input type="tel" id="contact" name="contact" pattern="[0-9]{10}" required>
+
+    <label for="gmail">Gmail:</label>
+    <input type="email" id="gmail" name="gmail" required>
+
+    <label for="qrCode">QR Code:</label>
+    <input type="text" id="qrCode" name="qrCode" placeholder="Enter QR Code information">
+    
+    <button type="button" onclick="generateQRCode()">Generate QR Code</button>
+
+    <button type="button" onclick="submitForm()">Submit Invitation</button>
+  </form>
+
+<script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+  <script>
+    function previewQRCode(input) {
+      var qrCode = document.getElementById('qrCode');
+      var file = input.files[0];
+
+      if (file) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          qrCode.src = e.target.result;
+          qrCode.style.display = 'block';
+        };
+
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function generateQRCode() {
+      var qrCodeInput = document.getElementById('qrCodeInput');
+      var qrCode = document.getElementById('qrCode');
+
+      if (qrCodeInput.files.length > 0) {
+        // Use a library like qrcode.js to generate QR code
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          var qrcode = new QRCode(qrCode, {
+            text: e.target.result,
+            width: 128,
+            height: 128
+          });
+        };
+
+        reader.readAsText(qrCodeInput.files[0]);
+      } else {
+        alert('Please upload a QR code image or generate one.');
+      }
+    }
+
+    function submitForm() {
+      // Perform form submission logic here
+      alert('Invitation submitted!');
+    }
+  </script>
+    </pre>
+
+
+
+
+<pre>
+<h1 style="color:#fff"><b>Guest list</b></h1>
+<pre>
+<form id="guestEntryForm">
+    <label for="numberOfMembers">Number of Members:</label>
+    <input type="number" id="numberOfMembers" name="numberOfMembers" min="1" required>
+
+    <div id="guestFields"></div>
+
+    <button type="button" onclick="generateGuestFields()">Generate Guest Fields</button>
+
+
+
+
+    <button type="button" onclick="submitForm()">Submit</button>
+  </form>
+
+  <script>
+    function generateGuestFields() {
+      var numberOfMembers = parseInt(document.getElementById('numberOfMembers').value);
+      var guestFieldsContainer = document.getElementById('guestFields');
+      guestFieldsContainer.innerHTML = '';
+
+      for (var i = 1; i <= numberOfMembers; i++) {
+        var guestFieldset = document.createElement('fieldset');
+        guestFieldset.innerHTML = `<legend>Guest ${i}</legend>
+          <label for="name${i}">Name:</label>
+          <input type="text" id="name${i}" name="name${i}" required>
+
+          <label for="contact${i}">Contact:</label>
+          <input type="tel" id="contact${i}" name="contact${i}" pattern="[0-9]{10}" required>
+
+          <label for="email${i}">Email:</label>
+          <input type="email" id="email${i}" name="email${i}" required>
+
+          <label for="designation${i}">Designation:</label>
+          <select id="designation${i}" name="designation${i}" required>
+            <option value="sponsor">Sponsor</option>
+            <option value="guest">Guest</option>
+          </select>`;
+
+        guestFieldsContainer.appendChild(guestFieldset);
+      }
+    }
+
+    function submitForm() {
+      // Perform form submission logic here
+      alert('Form submitted!');
+    }
+  </script>
+</pre>
+<a href="admin.html">
+<button type="button">Home</button>
+</a>
+</div>
+</body>
+</html>
+
+

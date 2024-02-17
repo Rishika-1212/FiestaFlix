@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sponser</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale-1.0">
+      <title>technothon</title>
+      <link rel="stylesheet" type="text/css" href="sponsercss.css">
+      <link rel="icon" type="image/x-icon" href="fiestaflix-high-resolution-logo.png">
+  	<script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+
+
+ 
+</head>   
+<body>
+<div class="sec" id="coder">
+   <h1 style="color:#fff"><b>QR-code</b></h1>
+   
+<pre>
+<div id="qrcode"></div>
+<div id="magnify">Click to Magnify QR Code</div>
+<img id="magnified-image" alt="Magnified QR Code">
+
+<script>
+    // Function to generate a random QR code
+    function generateRandomQRCode() {
+        var text = 'https://example.com/' + Math.random().toString(36).substring(7);
+        var qrcode = new QRCode(document.getElementById("qrcode"), {
+            text: text,
+            width: 300,
+            height: 300
+        });
+
+        // Show the magnify button
+        document.getElementById("magnify").style.display = "block";
+    }
+
+    // Function to magnify the QR code
+    function magnifyQRCode() {
+        var canvas = document.querySelector('#qrcode canvas');
+        var magnifiedImage = document.getElementById('magnified-image');
+
+        // Set the magnified image source to the canvas data URL
+        magnifiedImage.src = canvas.toDataURL();
+        magnifiedImage.style.display = 'block';
+    }
+
+    // Generate a random QR code on page load
+    window.onload = function () {
+        generateRandomQRCode();
+
+        // Set up click event for magnify button
+        document.getElementById('magnify').addEventListener('click', magnifyQRCode);
+    };
+</script>
+</pre>
+ 
+<a href="sponser.html">
+                 <button type="button">Home</button>
+</a>
+</div>
+</body>
+</html>
+

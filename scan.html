@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Invitation & Guest List</title>
+<meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale-1.0">
+      <title>admin</title>
+      <link rel="stylesheet" type="text/css" href="cssadmin.css">
+      <link rel="icon" type="image/x-icon" href="fiestaflix-high-resolution-logo.png">
+  	
+ 
+</head>   
+<body>
+<div class="sec" >
+ <h1 style="color:#fff"><b>QR-Scanner</b></h1>
+
+
+
+<div class="container">
+        <h1>Scan QR Codes</h1>
+        <div class="section">
+            <div id="my-qr-reader">
+            </div>
+        </div>
+    </div>
+    <script
+        src="https://unpkg.com/html5-qrcode">
+    </script>
+    <script src="script.js"></script>
+   
+ 
+ </div>
+<script>
+function domReady(fn) {
+    if (
+        document.readyState === "complete" ||
+        document.readyState === "interactive"
+    ) {
+        setTimeout(fn, 1000);
+    } else {
+        document.addEventListener("DOMContentLoaded", fn);
+    }
+}
+ 
+domReady(function () {
+ 
+    // If found you qr code
+    function onScanSuccess(decodeText, decodeResult) {
+        alert("You Qr is : " + decodeText, decodeResult);
+    }
+ 
+    let htmlscanner = new Html5QrcodeScanner(
+        "my-qr-reader",
+        { fps: 10, qrbos: 250 }
+ );
+    htmlscanner.render(onScanSuccess);
+});
+</script>
+<a href="admin.html">
+<button type="button">Home</button>
+</a>
+</div>
+</body>
+</html>

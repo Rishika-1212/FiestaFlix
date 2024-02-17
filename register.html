@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sponsor Registration</title>
+    <link rel="stylesheet" href="stylessponsor.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Sponsor Registration</h1>
+
+        <!-- Sponsor Registration Form -->
+        <form id="sponsorForm">
+            <label for="companyname">Company Name:</label>
+            <input type="text" id="companyname" name="companyname" required>
+            
+            <label for="fullname">Full Name:</label>
+            <input type="text" id="fullname" name="fullname" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <button type="button" onclick="registerSponsor()">Register</button>
+        </form>
+    </div>
+
+    <script>
+        function registerSponsor() {
+            // Add your sponsor registration logic here
+
+            // Redirect to sponsor.html after successful registration
+            window.location.href = "sponser.html";
+        }
+    </script>
+</body>
+</html>

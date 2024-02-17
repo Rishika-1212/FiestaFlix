@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Invitation & Guest List</title>
+<meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale-1.0">
+      <title>admin</title>
+      <link rel="stylesheet" type="text/css" href="cssadmin.css">
+      <link rel="icon" type="image/x-icon" href="fiestaflix-high-resolution-logo.png">
+  	
+ 
+</head>   
+<body>
+<div class="sec" >
+<h1 style="color:#fff"><b>Notifications</b></h1>
+   <pre>
+ <form id="notificationForm">
+    <label for="recipient">Recipient:</label>
+    <input type="text" id="recipient" name="recipient" placeholder="Enter recipient's name">
+
+    <label for="message">Notification Message:</label>
+    <textarea id="message" name="message" placeholder="Enter your notification message"></textarea>
+
+    <button type="button" onclick="sendNotification()">Send Notification</button>
+  </form>
+
+  <script>
+    function sendNotification() {
+      const recipient = document.getElementById('recipient').value;
+      const message = document.getElementById('message').value;
+
+      // Here you would typically send this data to a server for processing and sending notifications.
+      // For simplicity, we'll just log the data to the console in this example.
+      console.log('Recipient:', recipient);
+      console.log('Message:', message);
+
+      // Reset the form after processing
+      document.getElementById('notificationForm').reset();
+    }
+  </script>
+    </pre>
+<a href="admin.html">
+<button type="button">Home</button>
+</a>
+</div>
+</body>
+</html>
